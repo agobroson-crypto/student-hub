@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Student Hub</title>
+<meta name="description" content="Student Hub - learning, practice and progress for primary and secondary school students.">
+<style>
+:root{--b:#4169e1;--d:#172033;--m:#687286;--bg:#f5f7fb;--w:#fff;--l:#e2e7f0;--g:#16804d;--r:#c93636}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:var(--d);line-height:1.5}
+button,select{font:inherit}button{cursor:pointer}.top{position:sticky;top:0;z-index:9;background:#fff;border-bottom:1px solid var(--l)}
+.nav{max-width:1050px;margin:auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between}.logo{font-size:21px;font-weight:800}.logo span{color:var(--b)}
+.nav button{border:0;background:transparent;color:var(--m);font-weight:700;margin-left:10px}.hero{background:#fff;text-align:center;padding:55px 18px 42px}
+.badge{display:inline-block;background:#eaf0ff;color:#3155bd;padding:7px 12px;border-radius:99px;font-size:13px;font-weight:700}
+h1{font-size:clamp(35px,8vw,58px);line-height:1.05;margin:17px 0}.hero p{max-width:680px;margin:0 auto 24px;color:var(--m);font-size:17px}
+.actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}.primary,.secondary{border:0;border-radius:10px;padding:12px 18px;font-weight:700}.primary{background:var(--b);color:#fff}.secondary{background:#edf1ff;color:#3155bd}
+.wrap{max-width:1050px;margin:auto;padding:22px 18px}.card{background:var(--w);border:1px solid var(--l);border-radius:16px;padding:20px;box-shadow:0 6px 24px #1e2d5010}
+h2{margin:0 0 7px}.muted{color:var(--m)}.selectors{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:17px}label{font-size:13px;font-weight:700;display:block;margin-bottom:5px}select{width:100%;padding:11px;border:1px solid #d7deea;border-radius:9px;background:#fff}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.subject{padding:19px}.icon{font-size:29px}.subject p{color:var(--m);font-size:14px;min-height:42px}.action{width:100%;border:0;background:#edf1ff;color:#3155bd;padding:10px;border-radius:9px;font-weight:700}
+.resource{display:flex;justify-content:space-between;align-items:center;gap:10px;border:1px solid var(--l);border-radius:10px;padding:13px;margin-top:9px}.resource button{border:0;background:var(--b);color:#fff;border-radius:8px;padding:8px 12px}
+.quiz{max-width:700px;margin:auto}.answers{display:grid;gap:9px;margin-top:14px}.answer{text-align:left;border:1px solid var(--l);background:#fff;border-radius:9px;padding:12px}.answer.correct{background:#e9f7ef;border-color:#8acdaa;color:var(--g)}.answer.wrong{background:#fff0f0;border-color:#e0a0a0;color:var(--r)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.stat strong{display:block;font-size:32px}.bar{height:11px;background:#e7eaf1;border-radius:20px;overflow:hidden}.fill{height:100%;width:0;background:var(--b);transition:.3s}
+.notice{margin-top:12px;padding:11px;border-radius:9px;background:#e9f7ef;color:var(--g);font-weight:700}.hidden{display:none!important}
+.modal{position:fixed;inset:0;background:#07112599;display:flex;align-items:center;justify-content:center;padding:18px;z-index:30}.modal>div{background:#fff;border-radius:17px;padding:22px;max-width:540px;width:100%;max-height:90vh;overflow:auto}.close{float:right;border:0;border-radius:50%;width:31px;height:31px}
+footer{background:var(--d);color:#cbd2df;text-align:center;padding:28px 18px;margin-top:30px}
+@media(max-width:720px){.grid,.selectors,.stats{grid-template-columns:1fr}.navlinks{display:none}.hero{padding-top:42px}}
+
+.feedback-card{margin-top:18px}.stars{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0}.star-btn{border:1px solid var(--l);background:#fff;border-radius:10px;padding:9px 12px;font-size:20px}.star-btn.selected{background:#edf1ff;border-color:#4169e1}.feedback-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:10px}.feedback-btn{border:1px solid var(--l);background:#fff;border-radius:9px;padding:10px 13px;font-weight:700}.feedback-btn.selected{background:#e9f7ef;border-color:#8acdaa;color:var(--g)}.feedback-note{font-size:13px;color:var(--m);margin-top:9px}.analytics-box{margin-top:18px;background:#f7f9fd;border-radius:12px;padding:14px}.analytics-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10px}.analytics-item{background:#fff;border:1px solid var(--l);border-radius:10px;padding:12px}.analytics-item strong{display:block;font-size:22px}@media(max-width:720px){.analytics-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="top"><nav class="nav"><div class="logo">🎓 Student <span>Hub</span></div><div class="navlinks"><button onclick="scrollToId('home')">Home</button><button onclick="scrollToId('learn')">Learn</button><button onclick="scrollToId('quiz')">Quiz</button><button onclick="scrollToId('progress')">Progress</button></div></nav></header>
+
+<section class="hero" id="home">
+<div class="badge">🌍 Primary & Secondary School</div>
+<h1>Learn. Practice. <span style="color:#4169e1">Grow.</span></h1>
+<p>Student Hub helps young learners discover lessons, practice questions and track their learning journey.</p>
+<div class="actions"><button class="primary" onclick="scrollToId('learn')">Start Learning</button><button class="secondary" onclick="startQuiz('Mathematics')">Take a Quiz</button></div><div id="connectionStatus" class="muted" style="margin-top:14px;font-size:13px">● Connecting to online content…</div>
+</section>
+
+<section class="wrap">
+<div class="card">
+<h2>🌍 Choose your learning path</h2><p class="muted">Select your country, school level and grade. Your choices are saved on this device.</p>
+<div class="selectors">
+<div><label>Country</label><select id="country" onchange="saveProfile()"><option>Nigeria</option><option>Ghana</option><option>Kenya</option><option>South Africa</option><option>United Kingdom</option><option>United States</option><option>India</option><option>Canada</option><option>Other</option></select></div>
+<div><label>School level</label><select id="level" onchange="updateGrades();saveProfile()"><option>Primary School</option><option>Secondary School</option></select></div>
+<div><label>Class / Grade</label><select id="grade" onchange="saveProfile()"></select></div>
+</div><div id="notice" class="notice hidden">Saved ✓</div>
+</div>
+</section>
+
+<section class="wrap" id="learn"><h2>📚 Learning Center</h2><p class="muted">Choose a subject to see learning topics.</p><div class="grid" id="subjects"></div></section>
+
+<section class="wrap" id="quiz"><h2>🧠 Practice Quiz</h2><p class="muted">Test yourself and receive an instant score.</p><div class="card quiz" id="quizBox"><p class="muted">Choose a subject.</p><div class="actions" style="justify-content:flex-start"><button class="primary" onclick="startQuiz('Mathematics')">Mathematics</button><button class="secondary" onclick="startQuiz('English')">English</button><button class="secondary" onclick="startQuiz('Science')">Science</button></div></div></section>
+
+<section class="wrap" id="progress"><h2>🎯 Your Progress</h2><p class="muted">Your quiz results are saved locally on this device.</p><div class="stats"><div class="card stat">📝<strong id="taken">0</strong><span class="muted">Quizzes taken</span></div><div class="card stat">🏆<strong id="best">0%</strong><span class="muted">Best score</span></div><div class="card stat">⭐<strong id="points">0</strong><span class="muted">Learning points</span></div></div><div class="card" style="margin-top:15px"><b>Overall progress</b><div class="bar" style="margin-top:10px"><div class="fill" id="fill"></div></div><p class="muted" id="progressText">Take a quiz to start tracking.</p></div></section>
+
+<div class="modal hidden" id="modal"><div><button class="close" onclick="closeModal()">×</button><div id="modalBody"></div></div></div>
+
+<section class="wrap" id="feedback"><div class="card feedback-card"><h2>⭐ Help us improve Student Hub</h2><p class="muted">Your anonymous feedback helps us make lessons and quizzes better.</p><div id="feedbackForm"><b>How helpful was your learning experience?</b><div class="stars" id="stars"><button class="star-btn" aria-label="1 stars" onclick="chooseRating(1)">1★</button><button class="star-btn" aria-label="2 stars" onclick="chooseRating(2)">2★</button><button class="star-btn" aria-label="3 stars" onclick="chooseRating(3)">3★</button><button class="star-btn" aria-label="4 stars" onclick="chooseRating(4)">4★</button><button class="star-btn" aria-label="5 stars" onclick="chooseRating(5)">5★</button></div><div id="ratingText" class="feedback-note">Choose a rating.</div><b style="display:block;margin-top:14px">Was it helpful?</b><div class="feedback-actions"><button class="feedback-btn" onclick="sendHelpful(true)">👍 Yes</button><button class="feedback-btn" onclick="sendHelpful(false)">👎 Not really</button></div><div id="feedbackMsg" class="feedback-note"></div></div></div></section>
+<footer><b>🎓 Student Hub</b><br><small>Learn. Practice. Grow. — A global learning platform for young students.</small></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = 'https://fcawjbiqapdrtssisrzg.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_AfRMvqVPWNp9C8YHg7QMkg_jR4YBnFP';
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+const data={
+"Mathematics":{icon:"➗",desc:"Numbers, fractions, geometry and problem solving.",topics:["Numbers & Operations","Fractions & Decimals","Geometry","Problem Solving"]},
+"English":{icon:"📖",desc:"Grammar, vocabulary, reading and writing.",topics:["Grammar","Vocabulary","Reading Comprehension","Writing"]},
+"Science":{icon:"🔬",desc:"Explore living things, matter, energy and the world.",topics:["Living Things","Matter & Energy","Earth & Space","Health"]},
+"Social Studies":{icon:"🌍",desc:"People, communities, history and geography.",topics:["Community","Geography","History","Citizenship"]},
+"Computer Studies":{icon:"💻",desc:"Learn digital skills, computing and technology.",topics:["Computer Basics","Internet Safety","Digital Skills","Programming Basics"]},
+"Creative Arts":{icon:"🎨",desc:"Develop creativity through art, music and design.",topics:["Drawing","Design","Music","Creative Expression"]}
+};
+
+const localQuestions={
+"Mathematics":[["What is 7 × 8?",["48","54","56","64"],2],["What is 100 ÷ 4?",["20","25","40","50"],1],["Which number is even?",["13","21","35","42"],3],["What is 15 + 27?",["32","42","52","62"],1]],
+"English":[["Choose the correct sentence.",["She go to school.","She goes to school.","She going school.","She gone school."],1],["Opposite of “early”?",["Fast","Late","Soon","Quick"],1],["Which is a noun?",["Run","Beautiful","Teacher","Quickly"],2],["Which word is spelled correctly?",["Becaus","Because","Becouse","Becousee"],1]],
+"Science":[["Which planet is called the Red Planet?",["Earth","Mars","Jupiter","Venus"],1],["What do plants mainly use to make food?",["Sunlight","Sand","Plastic","Salt"],0],["Which organ pumps blood?",["Lung","Brain","Heart","Kidney"],2],["Water freezes at what temperature on the Celsius scale?",["0°C","10°C","50°C","100°C"],0]]
+};
+
+let onlineResources=[];
+let onlineQuestions=[];
+let qs=[],qi=0,score=0,subject="";
+
+function scrollToId(id){document.getElementById(id).scrollIntoView({behavior:"smooth"})}
+function updateGrades(){let g=document.getElementById("grade");g.innerHTML="";let p=document.getElementById("level").value==="Primary School";for(let i=p?1:7;i<=(p?6:12);i++){let o=document.createElement("option");o.textContent="Grade "+i;g.appendChild(o)}}
+function saveProfile(){localStorage.setItem("sh_profile",JSON.stringify({country:country.value,level:level.value,grade:grade.value}));let n=document.getElementById("notice");n.classList.remove("hidden");setTimeout(()=>n.classList.add("hidden"),900)}
+function loadProfile(){updateGrades();let p=JSON.parse(localStorage.getItem("sh_profile")||"null");if(p){country.value=p.country||"Nigeria";level.value=p.level||"Primary School";updateGrades();grade.value=p.grade||grade.value}}
+
+async function loadOnlineContent(){
+  try {
+    const [r,q] = await Promise.all([
+      supabaseClient.from("resources").select("*").order("created_at", {ascending:true}),
+      supabaseClient.from("questions").select("*").order("created_at", {ascending:true})
+    ]);
+    if (!r.error) onlineResources = r.data || [];
+    if (!q.error) onlineQuestions = q.data || [];
+    renderSubjects();
+    setConnectionStatus(true);
+  } catch (e) {
+    console.warn("Student Hub online content unavailable:", e);
+    setConnectionStatus(false);
+  }
+}
+
+function setConnectionStatus(online){
+  const el=document.getElementById("connectionStatus");
+  if(!el) return;
+  el.textContent=online ? "● Online content connected" : "● Using built-in content";
+  el.style.color=online ? "#16804d" : "#687286";
+}
+
+function filteredResources(subjectName){
+  const c=country.value, l=level.value, g=grade.value;
+  return onlineResources.filter(x =>
+    x.subject===subjectName &&
+    (x.country==="Global" || x.country===c) &&
+    x.level===l &&
+    x.grade===g
+  );
+}
+
+function renderSubjects(){
+  subjects.innerHTML=Object.entries(data).map(([n,s])=>{
+    const count=filteredResources(n).length;
+    return `<div class="card subject"><div class="icon">${s.icon}</div><h3>${n}</h3><p>${s.desc}</p><div class="muted" style="font-size:13px;margin-bottom:8px">${count} online lesson${count===1?"":"s"}</div><button class="action" onclick="openSubject('${n}')">Explore Topics</button></div>`;
+  }).join("");
+}
+
+function openSubject(n){
+  trackEvent("subject_opened",{subject:n});
+  let s=data[n];
+  const resources=filteredResources(n);
+  let html=`<h2>${s.icon} ${n}</h2><p class="muted">Topics for ${level.value} • ${grade.value}</p>`;
+  if(resources.length){
+    html+=`<div>${resources.map(r=>`<div class="resource"><span>📘 ${r.topic} — ${r.title}</span><button onclick="lessonFromOnline(${r.id})">Open</button></div>`).join("")}</div>`;
+  } else {
+    html+=`<div class="notice" style="margin-top:12px">No online lessons have been added for this class yet.</div>`;
+    html+=`<p class="muted" style="margin-top:14px">The database is connected. New lessons can be added later without changing the website.</p>`;
+  }
+  modalBody.innerHTML=html;
+  modal.classList.remove("hidden");
+}
+
+function lessonFromOnline(id){
+  trackEvent("lesson_opened",{subject:(onlineResources.find(x=>x.id===id)||{}).subject||""});
+  const r=onlineResources.find(x=>x.id===id);
+  if(!r) return;
+  modalBody.innerHTML=`<h2>📘 ${r.title}</h2><p class="muted">${r.subject} • ${r.level} • ${r.grade} • ${r.topic}</p><div class="card" style="margin-top:14px;background:#f7f9fd"><p style="white-space:pre-wrap;margin:0">${escapeHtml(r.content)}</p></div><button class="primary" style="margin-top:14px" onclick="closeModal();startQuiz('${r.subject}')">Practice</button>`;
+}
+
+function escapeHtml(text){
+  return String(text??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
+}
+
+function lesson(n,t){
+  modalBody.innerHTML=`<h2>📘 ${t}</h2><p class="muted">${n} • ${level.value} • ${grade.value}</p><div class="card" style="margin-top:14px;background:#f7f9fd"><h3>Lesson area</h3><p style="margin-top:8px">This topic is ready for online curriculum content. Add a lesson in Supabase and it will appear here automatically.</p></div><button class="primary" style="margin-top:14px" onclick="closeModal();startQuiz('${n==="Mathematics"?"Mathematics":n==="English"?"English":"Science"}')">Practice</button>`;
+}
+function closeModal(){modal.classList.add("hidden")}
+
+function getQuizQuestions(n){
+  const c=country.value, l=level.value, g=grade.value;
+  const online=onlineQuestions.filter(x =>
+    x.subject===n &&
+    (x.country==="Global" || x.country===c) &&
+    x.level===l &&
+    x.grade===g
+  ).map(x=>[x.question, Array.isArray(x.options)?x.options:Object.values(x.options||{}), x.correct_index]);
+  return online.length ? online : (localQuestions[n] || localQuestions["Mathematics"]);
+}
+
+function startQuiz(n){
+  trackEvent("quiz_started",{subject:n});
+  subject=localQuestions[n]||onlineQuestions.some(x=>x.subject===n)?n:"Mathematics";qs=getQuizQuestions(subject);qi=0;score=0;renderQ();scrollToId("quiz")}
+function renderQ(){if(qi>=qs.length){finish();return}let x=qs[qi];quizBox.innerHTML=`<p class="muted">Question ${qi+1} of ${qs.length}</p><h3 style="margin-top:12px">${escapeHtml(x[0])}</h3><div class="answers">${x[1].map((a,i)=>`<button class="answer" onclick="answer(${i})">${escapeHtml(a)}</button>`).join("")}</div>`}
+function answer(i){let x=qs[qi],bs=document.querySelectorAll(".answer");bs.forEach(b=>b.disabled=true);if(i===Number(x[2])){score++;bs[i].classList.add("correct")}else{bs[i].classList.add("wrong");bs[Number(x[2])].classList.add("correct")}setTimeout(()=>{qi++;renderQ()},550)}
+function finish(){let pct=Math.round(score/qs.length*100),s=JSON.parse(localStorage.getItem("sh_stats")||'{"taken":0,"best":0,"points":0}');s.taken++;s.best=Math.max(s.best,pct);s.points+=score*10;localStorage.setItem("sh_stats",JSON.stringify(s));trackEvent("quiz_completed",{subject:subject,score:score,total:qs.length});renderProgress();quizBox.innerHTML=`<div style="text-align:center"><div class="icon">🏆</div><h2>Quiz complete!</h2><div style="font-size:34px;font-weight:800;margin:8px">${pct}%</div><p class="muted">You scored ${score} / ${qs.length}.</p><button class="primary" style="margin-top:12px" onclick="startQuiz('${subject}')">Try Again</button></div>`}
+function renderProgress(){let s=JSON.parse(localStorage.getItem("sh_stats")||'{"taken":0,"best":0,"points":0}');taken.textContent=s.taken;best.textContent=s.best+"%";points.textContent=s.points;fill.style.width=Math.min(100,s.taken*10)+"%";progressText.textContent=s.taken?`You've completed ${s.taken} quiz${s.taken===1?"":"zes"}. Keep practicing!`:"Take a quiz to start tracking."}
+
+
+let feedbackRating=0;
+let feedbackHelpful=null;
+function trackEvent(eventName, extra={}){
+  try{
+    supabaseClient.from("analytics_events").insert([{event_type:eventName,country:country?.value||"",level:level?.value||"",grade:grade?.value||"",subject:extra.subject||"",metadata:extra}]).then(({error})=>{if(error) console.warn("Analytics event not saved",error.message)});
+  }catch(e){}
+}
+function chooseRating(n){
+  feedbackRating=n;
+  document.querySelectorAll(".star-btn").forEach((b,i)=>b.classList.toggle("selected",i<n));
+  document.getElementById("ratingText").textContent=`You selected ${n} out of 5 stars.`;
+  maybeSendFeedback();
+}
+function sendHelpful(v){
+  feedbackHelpful=v;
+  document.querySelectorAll(".feedback-btn").forEach((b,i)=>b.classList.toggle("selected",i===(v?0:1)));
+  maybeSendFeedback();
+}
+function maybeSendFeedback(){
+  if(!feedbackRating || feedbackHelpful===null) return;
+  supabaseClient.from("feedback").insert([{rating:feedbackRating,helpful:feedbackHelpful,country:country?.value||"",level:level?.value||"",grade:grade?.value||""}]).then(({error})=>{
+    const m=document.getElementById("feedbackMsg");
+    if(error){m.textContent="Thanks! We couldn't save that right now, but your feedback is appreciated.";console.warn(error.message);}
+    else{m.textContent="Thank you! Your anonymous feedback was recorded. 💙";trackEvent("feedback_submitted",{rating:feedbackRating,helpful:feedbackHelpful});}
+  });
+}
+
+loadProfile();renderSubjects();renderProgress();trackEvent("site_visit");loadOnlineContent();
+</script>
+</body>
+</html>
